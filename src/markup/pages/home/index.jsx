@@ -12,7 +12,6 @@ const styles = ({
     wrapper: {
         display: "flex",
         gap: "50px",
-        paddingTop: "150px"
     },
     logo: {
         height: "27vmin"
@@ -35,10 +34,10 @@ export default function Home() {
                     <a href="/page-1">
                         <img src={blueBall} alt="blue pokeball" style={styles.ball}/>
                     </a>
-                    <a href="/page-1">
+                    <a href="/page-2">
                         <img src={yellowBall} alt="yellow pokeball" style={styles.ball}/>
                     </a>
-                    <a href="/page-1">
+                    <a href="/page-3">
                         <img src={pinkBall} alt="pink pokeball" style={styles.ball}/>
                     </a>
                 </span>
