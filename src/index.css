@@ -57,7 +57,7 @@ code {
   padding: 10px 20px;
   font-size: 18px;
   color: white;
-  background-color: #f9c100;
+  /* background-color: #f9c100; */
   border: none;
   border-radius: 5px;
   text-decoration: none;
@@ -66,7 +66,7 @@ code {
   transition: all 0.3s ease;
 }
 
-.pikachu-button::before {
+.pikachu-button img::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -78,10 +78,10 @@ code {
   transition: all 0.3s ease;
 }
 
-.pikachu-button:hover::before {
+.pikachu-button img:hover::before {
   transform: translate(-50%, -50%) scale(1.5);
 }
 
 .pikachu-button:hover {
-  background-color: #f7b300;
+  /* background-color: #f7b300; */
 }

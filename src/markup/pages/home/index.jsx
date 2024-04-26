@@ -2,11 +2,24 @@ import React from "react";
 
 // Picture 
 import logo from "../../../assets/pic1.png";
+import yellowBall from "../../../assets/ball_jaune.png";
+import blueBall from "../../../assets/ball_blue.png";
+import pinkBall from "../../../assets/ball_rose.png";
+
 
 // Style 
 const styles = ({
+    wrapper: {
+        display: "flex",
+        gap: "50px",
+        paddingTop: "150px"
+    },
     logo: {
         height: "27vmin"
+    },
+    ball: {
+        width: "70px",
+        height: "auto"
     }
 });
 
@@ -18,10 +31,17 @@ export default function Index() {
                 <p>
                     Bonjour ! 👋
                 </p>
-                <a class="pikachu-button" href="/page-1" rel="noopener noreferrer">
-                    Attrape ton pokémon 
-                </a>
-
+                <span class="pikachu-button" style={styles.wrapper}>
+                    <a href="/page-1">
+                        <img src={blueBall} alt="blue pokeball" style={styles.ball}/>
+                    </a>
+                    <a href="/page-1">
+                        <img src={yellowBall} alt="yellow pokeball" style={styles.ball}/>
+                    </a>
+                    <a href="/page-1">
+                        <img src={pinkBall} alt="pink pokeball" style={styles.ball}/>
+                    </a>
+                </span>
             </header>
         </>
     )
