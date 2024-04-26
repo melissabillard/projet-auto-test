@@ -50,6 +50,7 @@ export default function Page1() {
                     <div>
                         {options.map((option, index) => (
                             <button
+                                className="bt-quizz"
                                 key={index}
                                 onClick={() => handleOptionClick(option)}
                                 disabled={selectedAnswer !== null}
