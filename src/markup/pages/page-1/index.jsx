@@ -66,7 +66,7 @@ export default function Page1() {
                             ) : (
                                 <p>Incorrect! The correct answer is {correctAnswer}.</p>
                             )}
-                            <button onClick={handleNextQuestion}>Next Question</button>
+                            <button className="bt-next-q" onClick={handleNextQuestion}>Next Question</button>
                         </div>
                     )}
                     <p>Score: {score}</p>

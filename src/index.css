@@ -44,8 +44,10 @@ code {
 }
 
 .bt-quizz {
-  background-color: #007bff; /* Bleu */
-  color: #ffffff; /* Blanc */
+  background-color: #007bff;
+  /* Bleu */
+  color: #ffffff;
+  /* Blanc */
   border: none;
   padding: 10px 20px;
   font-size: 16px;
@@ -55,7 +57,8 @@ code {
 }
 
 .bt-quizz:hover {
-  background-color: #0056b3; /* Bleu foncé au survol */
+  background-color: #0056b3;
+  /* Bleu foncé au survol */
 }
 
 
@@ -87,4 +90,22 @@ code {
   height: 50px;
   background-size: cover;
   transition: all 0.3s ease;
+}
+
+.bt-next-q {
+  background-color: #28a745;
+  /* Vert */
+  color: #ffffff;
+  /* Blanc */
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.bt-next-q:hover {
+  background-color: #218838;
+  /* Vert foncé au survol */
 }
