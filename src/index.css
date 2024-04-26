@@ -162,3 +162,21 @@ code {
   /* adjust duration as needed */
   animation-iteration-count: infinite;
 }
+
+.bt-restart {
+  background-color: #dc3545;
+  /* Rouge */
+  color: #ffffff;
+  /* Blanc */
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.bt-restart:hover {
+  background-color: #c82333;
+  /* Rouge foncé au survol */
+}
