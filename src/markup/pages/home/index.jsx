@@ -10,7 +10,7 @@ const styles = ({
     }
 });
 
-export default function Index() {
+export default function Home() {
     return (
         <>
             <header className="App-header">
