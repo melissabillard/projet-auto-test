@@ -1,4 +1,3 @@
-import './App.css';
 import Markup from './markup/markup';
 
 // Layout

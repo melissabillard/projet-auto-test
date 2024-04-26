@@ -16,15 +16,14 @@ export default function Index() {
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" style={styles.logo} />
                 <p>
-                    Edit <code>src/App.js</code> and save to reload.
+                    Bonjour 👋
                 </p>
                 <a
                     className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
+                    href="/page-1"
                     rel="noopener noreferrer"
                 >
-                    Learn React
+                    **TOCTOC**
                 </a>
             </header>
         </>
