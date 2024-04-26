@@ -46,7 +46,42 @@ code {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.pikachu-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 18px;
+  color: white;
+  background-color: #f9c100;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.pikachu-button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+  transition: all 0.3s ease;
+}
+
+.pikachu-button:hover::before {
+  transform: translate(-50%, -50%) scale(1.5);
+}
+
+.pikachu-button:hover {
+  background-color: #f7b300;
 }
