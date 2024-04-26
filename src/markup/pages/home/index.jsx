@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 
 // Picture 
 import logo from "../../../assets/pic1.png";
@@ -31,15 +33,15 @@ export default function Home() {
                     Bonjour ! 👋
                 </p>
                 <span class="pikachu-button" style={styles.wrapper}>
-                    <a href="/page-1">
+                    <Link to="/page-1">
                         <img src={blueBall} alt="blue pokeball" style={styles.ball}/>
-                    </a>
-                    <a href="/page-2">
+                    </Link>
+                    <Link to="/page-2">
                         <img src={yellowBall} alt="yellow pokeball" style={styles.ball}/>
-                    </a>
-                    <a href="/page-3">
+                    </Link>
+                    <Link to="/page-3">
                         <img src={pinkBall} alt="pink pokeball" style={styles.ball}/>
-                    </a>
+                    </Link>
                 </span>
             </header>
         </>
