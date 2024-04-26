@@ -34,13 +34,13 @@ export default function Home() {
                 </p>
                 <span class="pikachu-button" style={styles.wrapper}>
                     <Link to="/page-1">
-                        <img src={blueBall} alt="blue pokeball" style={styles.ball}/>
+                        <img src={blueBall} className="img-shake" alt="blue pokeball" style={styles.ball}/>
                     </Link>
                     <Link to="/page-2">
-                        <img src={yellowBall} alt="yellow pokeball" style={styles.ball}/>
+                        <img src={yellowBall} className="img-shake" alt="yellow pokeball" style={styles.ball}/>
                     </Link>
                     <Link to="/page-3">
-                        <img src={pinkBall} alt="pink pokeball" style={styles.ball}/>
+                        <img src={pinkBall} className="img-shake" alt="pink pokeball" style={styles.ball}/>
                     </Link>
                 </span>
             </header>
