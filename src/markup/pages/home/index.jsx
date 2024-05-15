@@ -1,13 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
 // Picture 
 import logo from "../../../assets/pic1.png";
 import yellowBall from "../../../assets/ball_jaune.png";
 import blueBall from "../../../assets/ball_blue.png";
 import pinkBall from "../../../assets/ball_rose.png";
-
 
 // Style 
 const styles = ({
@@ -29,7 +27,7 @@ export default function Home() {
         <>
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" style={styles.logo} />
-                <p>
+                <p data-testid="test-bonjour">
                     Bonjour ! 👋
                 </p>
                 <span class="pikachu-button" style={styles.wrapper}>
