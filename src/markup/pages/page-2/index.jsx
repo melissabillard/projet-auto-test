@@ -135,7 +135,7 @@ export default function Page2() {
         <>
             <header className="App-header">
                 <div className="jeu-wrapper">
-                    <h1>Pokémon Battle Simulator</h1>
+                    <h1 className='font-page-2'>Pokémon Battle Simulator</h1>
                 
                     <div className="App-body">
                         {!playerPokemon ? (
