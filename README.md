@@ -17,6 +17,13 @@ Webservice : [https://pokeapi.co/](https://pokeapi.co/)
 ## Test
 - [Jest](https://jestjs.io/fr/)
 
+Exécution : ```npm run jest```
+
+- React
+
+Exécution : ```npm test```
+
+
 ## Déploiement
 - [Netlify](https://www.netlify.com/)
 
