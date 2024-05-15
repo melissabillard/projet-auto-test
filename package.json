@@ -21,7 +21,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest --coverage",
+    "test": "jest --watchAll --verbose",
+    "test:cov": "jest --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -43,6 +44,7 @@
     ]
   },
   "devDependencies": {
+    "@types/jest": "^29.5.12",
     "react-test-renderer": "^18.3.0"
   }
 }
