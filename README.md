@@ -16,7 +16,7 @@ Webservice : [https://pokeapi.co/](https://pokeapi.co/)
 
 ## Test
 
-- [React](https://create-react-app.dev/docs/running-tests/)
+- [JEST](https://jestjs.io/fr/docs/getting-started)
 
 Exécution : ```npm test```
 
