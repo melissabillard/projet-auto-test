@@ -3,7 +3,7 @@
     src: url('./assets/fonts/PokemonSolid.ttf') format('truetype');
 }
 
-.font-page-2 {
+.font-page-2, .game-over p {
   font-family: 'PokemonSolid', sans-serif !important;
   color: #ffdd1d;
   text-shadow: 2px 2px 4px #6867A6;
@@ -23,7 +23,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
+  /* overflow: hidden; */
   height: 10vh;
 }
 
@@ -425,6 +425,10 @@ code {
 .battle-log .log-entry .log-text {
   flex: 1;
 }
+
+.game-over p {
+  font-size: 25px;
+} 
 
 @keyframes fadeIn {
   from {
