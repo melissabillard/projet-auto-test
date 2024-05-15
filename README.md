@@ -21,7 +21,10 @@ Webservice : [https://pokeapi.co/](https://pokeapi.co/)
 Exécution : 
 
 1) Test standard : ```npm test```
-2) Test avec coverage : ```npm run test:cov```
+![](./src/assets/docs/test-1.png)
+
+3) Test avec coverage : ```npm run test:cov```
+![](./src/assets/docs/test-2.png)
 
 ## Déploiement
 - [Netlify](https://www.netlify.com/)
