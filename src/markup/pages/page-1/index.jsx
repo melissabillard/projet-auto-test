@@ -8,6 +8,7 @@ export default function Page1() {
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [score, setScore] = useState(0);
     const [questionNumber, setQuestionNumber] = useState(0);
+    const [pokemonImage, setPokemonImage] = useState("");
 
     useEffect(() => {
         fetchQuestion();
@@ -17,19 +18,28 @@ export default function Page1() {
         try {
             if (questionNumber >= 5) return;
 
+            let firstType, secondType;
             const response = await axios.get("https://pokeapi.co/api/v2/pokemon/");
             const randomPokemon = response.data.results[Math.floor(Math.random() * response.data.results.length)];
             const pokemonResponse = await axios.get(randomPokemon.url);
-            const { name, types } = pokemonResponse.data;
+            const { name, types, sprites } = pokemonResponse.data;
 
-            // Filtrer les types pour avoir au moins deux options
-            const filteredTypes = types.map(type => type.type.name);
-            const uniqueTypes = [...new Set(filteredTypes)]; // Supprime les doublons
-            const finalOptions = uniqueTypes.length >= 2 ? uniqueTypes.slice(0, 2) : [uniqueTypes[0], uniqueTypes[0]]; // Garantit au moins deux options
+            // S'assurer qu'il y a au moins deux types
+            if (types.length >= 2) {
+                firstType = types[0].type.name;
+                secondType = types[1].type.name;
+            } else {
+                firstType = types[0].type.name;
+                const newRandomPokemon = response.data.results[Math.floor(Math.random() * response.data.results.length)];
+                const newPokemonResponse = await axios.get(newRandomPokemon.url);
+                const newTypes = newPokemonResponse.data.types;
+                secondType = newTypes[0].type.name;
+            }
 
             setQuestion(`What type is ${name}?`);
-            setOptions(finalOptions);
-            setCorrectAnswer(finalOptions[0]);
+            setOptions([firstType, secondType]);
+            setCorrectAnswer(firstType);
+            setPokemonImage(sprites.front_default); // URL de l'image frontale du Pokémon
         } catch (error) {
             console.error("Error fetching question:", error);
         }
@@ -68,6 +78,7 @@ export default function Page1() {
                     {questionNumber < 5 ? (
                         <>
                             <h2>{question}</h2>
+                            {pokemonImage && <img src={pokemonImage} alt="Pokemon" style={{ maxWidth: "200px" }} />}
                             <div>
                                 {options.map((option, index) => (
                                     <button
