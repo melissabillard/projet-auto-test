@@ -9,7 +9,7 @@
 L’objectif est de mettre en place un processus de tests automatisés et d’intégration continue.
 
 ## API Pokémon ⚡
-[https://pokeapi.co/](https://pokeapi.co/)
+Webservice : [https://pokeapi.co/](https://pokeapi.co/)
 
 ## Technologie 
 - Site Web en [React](https://fr.legacy.reactjs.org/)
