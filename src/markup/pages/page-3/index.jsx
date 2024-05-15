@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import pokemonCardBack from '../../../assets/pokemon_card.png'; // Chemin correct pour l'image de dos de carte
+import pokemonCardBack from '../../../assets/pokemon_card.png';
 import axios from 'axios';
 
 const Card = ({ pokemon, isFlipped, onClick }) => {
@@ -14,7 +14,7 @@ const Card = ({ pokemon, isFlipped, onClick }) => {
             {isFlipped ? (
                 <img src={pokemon.image} alt={pokemon.name} />
             ) : (
-                <img src={process.env.PUBLIC_URL + pokemonCardBack} alt="card back" />
+                <img src={pokemonCardBack} alt="card back" />
             )}
         </div>
     );
@@ -93,9 +93,9 @@ const Page3 = () => {
     }, [matchedPairs]);
 
     return (
-        <div className="game">
+        <div className="game font-page-3">
             <header className="App-header">
-                <h1>Pokémon Memory</h1>
+                <h1 className="font-page-3">Pokémon Memory</h1>
                 {gameStarted ? (
                     <>
                         {matchedPairs.length === 9 ? (
@@ -129,9 +129,22 @@ const Page3 = () => {
                         )}
                     </>
                 ) : (
-                    <button onClick={startGame} className="start-button">
+                    <>
+                        <div className="gif-container">
+                            <iframe
+                                src="https://giphy.com/embed/tDJfaLVF0gHV90lxZj"
+                                width="100%"
+                                height="100%"
+                                style={{ position: 'absolute' }}
+                                frameBorder="0"
+                                className="giphy-embed"
+                                allowFullScreen
+                            ></iframe>
+                        </div>
+                        <button onClick={startGame} className="start-button">
                         Start Game
-                    </button>
+                        </button>
+                    </>
                 )}
             </header>
         </div>
