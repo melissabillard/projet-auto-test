@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import pokemonCardBack from '../../../assets/pokemon_card.png'; // Chemin correct pour l'image de dos de carte
-import './index.css'; // Chemin correct pour le fichier CSS
 import axios from 'axios';
 
 const Card = ({ pokemon, isFlipped, onClick }) => {
