@@ -2,14 +2,19 @@ const sum = require('./unitaire');
 
 /* *
  * Execution test unitaire
- * */ 
-test('adds 1 + 2 to equal 3', () => {
-  expect(sum(1, 2)).toBe(3);
-});
+ * */
+
+describe(
+  'Test sum', () => {
+    test('test 1 + 2 = 3', () => {
+      expect(sum(1, 2)).toBe(3);
+    })
+  }
+)
 
 /* *
  * Execution test graphique
- * */ 
+ * */
 
 /* *
  * Execution test intégration
