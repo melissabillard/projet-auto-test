@@ -68,7 +68,7 @@ export default function Page1() {
 
     useEffect(() => {
         if (questionNumber < 5) fetchQuestion();
-    }, [questionNumber]); 
+    }, [questionNumber]);
 
     return (
         <>
@@ -78,7 +78,7 @@ export default function Page1() {
                     {questionNumber < 5 ? (
                         <>
                             <h2>{question}</h2>
-                            {pokemonImage && <img src={pokemonImage} alt="Pokemon" style={{ maxWidth: "200px" }} />}
+                            {pokemonImage && <img className="pokemon-jeu-1" src={pokemonImage} alt="Pokemon" />}
                             <div>
                                 {options.map((option, index) => (
                                     <button
