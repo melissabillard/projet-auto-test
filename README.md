@@ -18,7 +18,10 @@ Webservice : [https://pokeapi.co/](https://pokeapi.co/)
 
 - [JEST](https://jestjs.io/fr/docs/getting-started)
 
-Exécution : ```npm test```
+Exécution : 
+
+1) Test standard : ```npm test```
+2) Test avec coverage : ```npm run test:cov```
 
 ## Déploiement
 - [Netlify](https://www.netlify.com/)
