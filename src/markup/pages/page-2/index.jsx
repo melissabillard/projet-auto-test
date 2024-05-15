@@ -4,14 +4,16 @@ import { useSpring, animated } from 'react-spring';
 
 
 
+
 export default function Page2() {
     const [playerPokemon, setPlayerPokemon] = useState(null);
     const [opponentPokemon, setOpponentPokemon] = useState(null);
     const [pokemons, setPokemons] = useState([]);
     const [damage, setDamage] = useState(0);
-    const [turn, setTurn] = useState('player'); // Nouveau état pour gérer les tours
-    const [battleLog, setBattleLog] = useState([]); // Nouveau état pour journal de bataille
-    const logEndRef = useRef(null); // Référence pour le défilement automatique
+    const [turn, setTurn] = useState('player');
+    const [battleLog, setBattleLog] = useState([]);
+    const [gameOver, setGameOver] = useState(false);
+    const logEndRef = useRef(null);
 
     useEffect(() => {
         const fetchPokemons = async () => {
@@ -30,6 +32,7 @@ export default function Page2() {
         const randomId = Math.floor(Math.random() * 151) + 1;
         const fetchedOpponentPokemon = await fetchPokemonData(randomId);
         setOpponentPokemon({ ...fetchedOpponentPokemon, currentHP: 100, totalHP: 100 });
+        setGameOver(false);
     };
 
     const fetchPokemonData = async (pokemonId) => {
@@ -43,7 +46,7 @@ export default function Page2() {
             moves: response.data.moves.slice(0, 4).map(move => ({
                 name: move.move.name,
                 url: move.move.url,
-                power: move.move.power !== null ? move.move.power : 40 // Fournir une valeur par défaut si power n'est pas défini
+                power: move.move.power !== null ? move.move.power : 40
             }))
         };
     };
@@ -51,15 +54,16 @@ export default function Page2() {
     const calculateDamage = (attacker, defender, move) => {
         const attackStat = attacker.stats.find(stat => stat.stat.name === 'attack').base_stat;
         const defenseStat = defender.stats.find(stat => stat.stat.name === 'defense').base_stat;
-        const baseDamage = move.power !== null && move.power !== undefined ? move.power : 40; // Vérifier et utiliser une valeur par défaut si nécessaire
+        const baseDamage = move.power !== null && move.power !== undefined ? move.power : 40;
 
-        // Ajout d'un facteur aléatoire entre 0.85 et 1.0 pour varier les dégâts
         const randomFactor = Math.random() * (1 - 0.85) + 0.85;
-        const damage = (((2 * 50 / 5 + 2) * baseDamage * attackStat / defenseStat) / 50 + 2) * randomFactor; // Utiliser un niveau fixe pour simplifier le calcul
+        const damage = (((2 * 50 / 5 + 2) * baseDamage * attackStat / defenseStat) / 50 + 2) * randomFactor;
         return Math.floor(damage);
     };
 
     const handleAttack = (attacker, defender, move, attackerType) => {
+        if (gameOver) return; // Si le jeu est terminé, ne pas permettre l'attaque
+
         const damage = calculateDamage(attacker, defender, move);
         setDamage(damage);
         if (attackerType === 'player') {
@@ -84,26 +88,20 @@ export default function Page2() {
     };
 
     useEffect(() => {
-        if (turn === 'opponent' && opponentPokemon && playerPokemon) {
+        if (turn === 'opponent' && opponentPokemon && playerPokemon && !gameOver) {
             const randomMove = opponentPokemon.moves[Math.floor(Math.random() * opponentPokemon.moves.length)];
             setTimeout(() => {
                 handleAttack(opponentPokemon, playerPokemon, randomMove, 'opponent');
                 setTurn('player');
             }, 1000);
         }
-    }, [turn, opponentPokemon, playerPokemon]);
+    }, [turn, opponentPokemon, playerPokemon, gameOver]);
 
     useEffect(() => {
         if (playerPokemon && playerPokemon.currentHP === 0) {
-            setTimeout(() => {
-                alert('You lost the battle!');
-                resetGame();
-            }, 500); // Délai plus long pour s'assurer que l'alerte se ferme
+            setGameOver(true);
         } else if (opponentPokemon && opponentPokemon.currentHP === 0) {
-            setTimeout(() => {
-                alert('You won the battle!');
-                resetGame();
-            }, 500); // Délai plus long pour s'assurer que l'alerte se ferme
+            setGameOver(true); 
         }
     }, [playerPokemon, opponentPokemon]);
 
@@ -119,6 +117,7 @@ export default function Page2() {
         setDamage(0);
         setTurn('player');
         setBattleLog([]);
+        setGameOver(false);
     };
 
     const BattleAnimation = ({ damage }) => {
@@ -130,7 +129,6 @@ export default function Page2() {
             </animated.div>
         );
     };
-
     return (
         <>
             <header className="App-header">
@@ -181,6 +179,12 @@ export default function Page2() {
                                         ))}
                                         <div ref={logEndRef} />
                                     </div>
+                                    {gameOver && (
+                                    <div className="game-over">
+                                        <p>{playerPokemon?.currentHP === 0 ? 'You lost the battle!' : 'You won the battle!'}</p>
+                                        <button className="bt-restart" onClick={resetGame}>Restart Game</button>
+                                    </div>
+                                )}
                                 </div>
                             )
                         )}
