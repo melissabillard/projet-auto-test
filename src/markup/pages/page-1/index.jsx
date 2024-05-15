@@ -21,10 +21,15 @@ export default function Page1() {
             const randomPokemon = response.data.results[Math.floor(Math.random() * response.data.results.length)];
             const pokemonResponse = await axios.get(randomPokemon.url);
             const { name, types } = pokemonResponse.data;
+
+            // Filtrer les types pour avoir au moins deux options
+            const filteredTypes = types.map(type => type.type.name);
+            const uniqueTypes = [...new Set(filteredTypes)]; // Supprime les doublons
+            const finalOptions = uniqueTypes.length >= 2 ? uniqueTypes.slice(0, 2) : [uniqueTypes[0], uniqueTypes[0]]; // Garantit au moins deux options
+
             setQuestion(`What type is ${name}?`);
-            const options = types.map(type => type.type.name);
-            setOptions(options);
-            setCorrectAnswer(options[0]);
+            setOptions(finalOptions);
+            setCorrectAnswer(finalOptions[0]);
         } catch (error) {
             console.error("Error fetching question:", error);
         }
