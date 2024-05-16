@@ -1,10 +1,43 @@
-// import { render, screen, cleanup } from '@testing-library/react';
-// import Home from '../src/markup/pages/home';
+// import {describe, expect, test} from '@jest/globals';
 
 const sum = require('./sum');
+const axios = require('axios');
 
-// TOUJOURS VÉRIFIER QUE SON TEST ÉCHOUE !
 
+//*** TOUJOURS VÉRIFIER QUE SON TEST ÉCHOUE ! ***//
+
+// TEST API
+describe('Test de l\'API PokeAPI', () => {
+  test('Test API 200', async () => {
+    try {
+      const response = await axios.get('https://pokeapi.co/api/v2/pokemon/1');
+      expect(response.status).toBe(200);
+    } catch (error) {
+      throw new Error('L\'API a retourné une erreur');
+    }
+  })
+  test('Test API 404', async () => {
+    try {
+      const response = await axios.get('https://pokeapi.co/api/v2/pokemon/10000');
+    } catch (error) {
+      expect(error.response.status).toBe(404);
+      expect(error.response.data).toEqual('Not Found');
+    }
+  })
+  test('Récupération des données d\'un Pokémon', async () => {
+    const response = await axios.get('https://pokeapi.co/api/v2/pokemon/1');
+
+    expect(response.status).toBe(200);
+
+    const pokemonData = response.data;
+
+    expect(pokemonData).toHaveProperty('name');
+    expect(pokemonData).toHaveProperty('types');
+    expect(pokemonData).toHaveProperty('abilities');
+  })
+});
+
+// TEST UNITAIRE exemple
 describe(
   'Test somme', () => {
     test('test 1 + 2 = 3', () => {
@@ -30,9 +63,3 @@ describe(
     })
   }
 )
-
-// test('Exemple rendu composant', () => {
-//   render(<Home />);
-//   const todoElement = screen.getAllByTestId('test-bonjour');
-//   expect(todoElement).toBeInTheDocument();
-// })
