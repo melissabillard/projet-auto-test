@@ -1,8 +1,6 @@
 // import {describe, expect, test} from '@jest/globals';
-
 const sum = require('./sum');
 const axios = require('axios');
-
 
 //*** TOUJOURS VÉRIFIER QUE SON TEST ÉCHOUE ! ***//
 
@@ -56,6 +54,7 @@ describe(
   }
 )
 
+// TEST GRAPHIQUE exemple
 describe(
   'Test nbr caractères', () => {
     test('le résultat possède 5 caractères', () => {
