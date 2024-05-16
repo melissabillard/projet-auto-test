@@ -1,3 +1,4 @@
+const React = require('react');
 // Packages
 const { render, screen } = require('@testing-library/react'); // utiliser CommonJS plutôt que les imports ECMAScript
 const axios = require('axios');
@@ -5,8 +6,8 @@ const axios = require('axios');
 // Fonctions
 const sum = require('./sum');
 
-// Components
-// const MyHomePage = require('../src/markup/pages/home/index');
+// Components - Utilise l'importation ES6
+const MyHomePage = require('../src/markup/pages/home/index');
 
 //*** TOUJOURS VÉRIFIER QUE SON TEST ÉCHOUE ! ***//
 
@@ -69,10 +70,16 @@ describe(
 // Nous allons simuler le rendu de notre composant React
 
 // describe('Tests pour la page d\'accueil', () => {
-//   test('rend correctement le texte "Bonjour"', () => {
+//   test('le texte "Bonjour" est présent', async () => {
 //     render(<MyHomePage />);
-//     const textElement = screen.getByText(/Bonjour/i);
+//     const textElement = screen.getByTestId('test-bonjour');
 //     expect(textElement).toBeInTheDocument();
+//   });
+//   test('le texte "Bonjour" est correct', async () => {
+//     render(<MyHomePage />);
+//     // Vérifie que le texte "Bonjour" est correct
+//     const textElement = screen.getByTestId('test-bonjour');
+//     expect(textElement.textContent).toBe('Bonjour ! 👋');
 //   });
 // });
 
