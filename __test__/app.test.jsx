@@ -6,7 +6,7 @@ const axios = require('axios');
 const sum = require('./sum');
 
 // Components
- // const MyHomePage = require('../src/markup/pages/home/index.jsx');
+// const MyHomePage = require('../src/markup/pages/home/index');
 
 //*** TOUJOURS VÉRIFIER QUE SON TEST ÉCHOUE ! ***//
 
@@ -28,10 +28,10 @@ describe('Test de l\'API PokeAPI', () => {
       // On s'attend à ce que l'erreur soit déclenchée
       expect(error.response.status).toBe(404);
       // On s'attend à ce que la réponse ait un message "Not Found"
-      expect(error.response.data).toEqual( 'Not Found');
+      expect(error.response.data).toEqual('Not Found');
     }
   });
-  
+
   test('Récupération des données d\'un Pokémon', async () => {
     const response = await axios.get('https://pokeapi.co/api/v2/pokemon/1');
 
@@ -67,6 +67,14 @@ describe(
 
 // TEST GRAPHIQUE exemple
 // Nous allons simuler le rendu de notre composant React
+
+// describe('Tests pour la page d\'accueil', () => {
+//   test('rend correctement le texte "Bonjour"', () => {
+//     render(<MyHomePage />);
+//     const textElement = screen.getByText(/Bonjour/i);
+//     expect(textElement).toBeInTheDocument();
+//   });
+// });
 
 describe(
   'Test nbr caractères', () => {

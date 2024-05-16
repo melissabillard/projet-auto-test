@@ -1,3 +1,9 @@
+const { defaults: tsjPreset } = require('ts-jest/presets');
+
 module.exports = {
-    testEnvironment: 'jsdom',
+  testEnvironment: 'jsdom',
+  transform: {
+    ...tsjPreset.transform,
+    "^.+\\.jsx?$": "babel-jest"
+  }
 };
