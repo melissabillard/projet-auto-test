@@ -1,9 +1,12 @@
+// Packages
 const { render, screen } = require('@testing-library/react'); // utiliser CommonJS plutôt que les imports ECMAScript
-const sum = require('./sum');
 const axios = require('axios');
 
-// COMPONENT
-// const MyHomePage = require('../src/markup/pages/home/index.jsx');
+// Fonctions
+const sum = require('./sum');
+
+// Components
+ // const MyHomePage = require('../src/markup/pages/home/index.jsx');
 
 //*** TOUJOURS VÉRIFIER QUE SON TEST ÉCHOUE ! ***//
 
