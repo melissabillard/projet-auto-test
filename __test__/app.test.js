@@ -1,7 +1,7 @@
-const React = require('react');
 // Packages
 const { render, screen } = require('@testing-library/react'); // utiliser CommonJS plutôt que les imports ECMAScript
 const axios = require('axios');
+const React = require('react');
 
 // Fonctions
 const sum = require('./sum');
@@ -68,6 +68,15 @@ describe(
 
 // TEST GRAPHIQUE exemple
 // Nous allons simuler le rendu de notre composant React
+
+// Tests pour la page d'accueil
+// describe('Tests pour la page d\'accueil', () => {
+//   test('rend correctement le texte "Bonjour"', () => {
+//     render(<MyHomePage />);
+//     const textElement = screen.getByTestId('test-bonjour');
+//     expect(textElement.textContent).toBe('Bonjour ! 👋');
+//   });
+// });
 
 // describe('Tests pour la page d\'accueil', () => {
 //   test('le texte "Bonjour" est présent', async () => {
