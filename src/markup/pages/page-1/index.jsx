@@ -74,7 +74,7 @@ export default function Page1() {
         <>
             <header className="App-header">
                 <div>
-                    <h1>Pokémon Quiz</h1>
+                    <img src={require("../../../assets/pokemonblue.png")} style={{width:"350px"}}/>
                     {questionNumber < 5 ? (
                         <>
                             <h2>{question}</h2>
