@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // Picture 
-// import logo from "../../../assets/pic1.png";
-// import yellowBall from "../../../assets/ball_jaune.png";
-// import blueBall from "../../../assets/ball_blue.png";
-// import pinkBall from "../../../assets/ball_rose.png";
+import logo from "../../../assets/pic1.png";
+import yellowBall from "../../../assets/ball_jaune.png";
+import blueBall from "../../../assets/ball_blue.png";
+import pinkBall from "../../../assets/ball_rose.png";
 
 // Style 
 const styles = ({
