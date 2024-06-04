@@ -30,7 +30,7 @@ export default function Home() {
                 Bonjour ! 👋
             </p>
             <span class="pikachu-button" style={styles.wrapper}>
-                {/* <Link to="/page-1">
+                <Link to="/page-1">
                     <img src={blueBall} className="img-shake" alt="blue pokeball" style={styles.ball} />
                 </Link>
                 <Link to="/page-2">
@@ -38,7 +38,7 @@ export default function Home() {
                 </Link>
                 <Link to="/page-3">
                     <img src={pinkBall} className="img-shake" alt="pink pokeball" style={styles.ball} />
-                </Link> */}
+                </Link>
             </span>
         </header>
     )
