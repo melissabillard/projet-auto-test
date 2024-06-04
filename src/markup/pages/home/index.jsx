@@ -25,7 +25,7 @@ const styles = ({
 export default function Home() {
     return (
         <header className="App-header">
-            {/* <img src={logo} className="App-logo" alt="logo" style={styles.logo} /> */}
+            <img src={logo} className="App-logo" alt="logo" style={styles.logo} />
             <p data-testid="test-bonjour">
                 Bonjour ! 👋
             </p>
