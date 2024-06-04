@@ -36,7 +36,16 @@ Webservice : [https://pokeapi.co/](https://pokeapi.co/)
 
 ### Test graphique
 
+| Libellé            | Objectif du Test                                      | Valeur Retournée                |
+|--------------------|-------------------------------------------------------|---------------------------------|
+| Test ....      | .... | True |
+
+
 ### Test d'intégration
+
+| Libellé            | Objectif du Test                                      | Valeur Retournée                |
+|--------------------|-------------------------------------------------------|---------------------------------|
+| Test ....      | .... | True |
 
 ## Déploiement
 - [Netlify](https://www.netlify.com/)
