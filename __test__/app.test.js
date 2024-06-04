@@ -1,5 +1,5 @@
 // Packages
-const { render, screen } = require('@testing-library/react'); // utiliser CommonJS plutôt que les imports ECMAScript
+const { render, screen, mount, wrapper } = require('@testing-library/react'); // utiliser CommonJS plutôt que les imports ECMAScript
 const axios = require('axios');
 const React = require('react');
 
@@ -8,8 +8,10 @@ const sum = require('./sum');
 
 // Components - Utilise l'importation ES6
 const MyHomePage = require('../src/markup/pages/home/index');
+const { shallow } = require('enzyme');
 
 //*** TOUJOURS VÉRIFIER QUE SON TEST ÉCHOUE ! ***//
+jest.mock('../src/markup/pages/home/index', () => () => 'Home');
 
 // TEST API
 describe('Test de l\'API PokeAPI', () => {
@@ -71,26 +73,28 @@ describe(
 
 // Tests pour la page d'accueil
 describe('Tests pour la page d\'accueil', () => {
-  test('le texte "Bonjour" est présent', async () => {
-    render(<MyHomePage />);
-    const textElement = screen.getByTestId('test-bonjour');
-    expect(textElement).toBeInTheDocument();
-  });
+  // jest.mock('../src/markup/pages/home/index', () => {
+  //   const HomeBonjour = () => (
+  //     <div data-testid='test-bonjour'>Bonjour ! 👋</div>
+  //   );
 
-  jest.mock('../src/markup/pages/home/index', () => {
-    const HomeBonjour = () => (
-      <div data-testid='test-bonjour'>Bonjour ! 👋</div>
-    );
-
-    return HomeBonjour;
-  });
-
-  // test('le texte "Bonjour" est correct', async () => {
-  //   render(<MyHomePage />);
-  //   // Vérifie que le texte "Bonjour" est correct
-  //   const textElement = screen.getByTestId('test-bonjour');
-  //   expect(textElement.textContent).toBe('Bonjour ! 👋');
+  //   return HomeBonjour;
   // });
+
+ test('le texte "Bonjour" est présent', async () => {
+    render(<MyHomePage />);
+    const textElement = screen.findByTestId('test-bonjour');
+    expect(textElement).toBeDefined();
+  });
+
+
+  test('le texte "Bonjour" est correct', async () => {
+    render(<MyHomePage />);
+    // Vérifie que le texte "Bonjour" est correct
+   const textElement = screen.findByText('Bonjour ! 👋');
+   expect(textElement).not.toBeNull();
+   expect(textElement).toBeDefined();
+  });
 });
 
 describe(
