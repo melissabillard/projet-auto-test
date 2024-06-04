@@ -14,7 +14,7 @@ Webservice : [https://pokeapi.co/](https://pokeapi.co/)
 ## Technologie 
 - Site Web en [React](https://fr.legacy.reactjs.org/)
 
-## Test
+## Présentation des Tests et Instructions d'Exécution
 
 - [JEST](https://jestjs.io/fr/docs/getting-started)
 
@@ -30,22 +30,24 @@ Webservice : [https://pokeapi.co/](https://pokeapi.co/)
 
 ### Test unitaire
 
-| Libellé            | Objectif du Test                                      | Valeur attendue                |
-|--------------------|-------------------------------------------------------|---------------------------------|
-| Test ....      | .... | True |
+# Présentation des Tests
+
+| Libellé            | Objectif du Test                                      | Valeur attendue                | Page                | Chemin d'accès            |
+|--------------------|-------------------------------------------------------|---------------------------------|---------------------|----------------------------|
+| Test ...      | ... | True                            | Home  |url de la page (prod)          |
 
 ### Test graphique
 
-| Libellé            | Objectif du Test                                      | Valeur attendue                |
-|--------------------|-------------------------------------------------------|---------------------------------|
-| Test ....      | .... | True |
+| Libellé            | Objectif du Test                                      | Valeur attendue                | Page                | Chemin d'accès            |
+|--------------------|-------------------------------------------------------|---------------------------------|---------------------|----------------------------|
+| Test ...      | ... | True                            | Home  |url de la page (prod)          |
 
 
 ### Test d'intégration
 
-| Libellé            | Objectif du Test                                      | Valeur attendue                |
-|--------------------|-------------------------------------------------------|---------------------------------|
-| Test ....      | .... | True |
+| Libellé            | Objectif du Test                                      | Valeur attendue                | Page                | Chemin d'accès            |
+|--------------------|-------------------------------------------------------|---------------------------------|---------------------|----------------------------|
+| Test ...      | ... | True                            | Home  |url de la page (prod)          |
 
 ## Déploiement
 - [Netlify](https://www.netlify.com/)
