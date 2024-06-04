@@ -2,9 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useSpring, animated } from 'react-spring';
 
-
-
-
 export default function Page2() {
     const [playerPokemon, setPlayerPokemon] = useState(null);
     const [opponentPokemon, setOpponentPokemon] = useState(null);
@@ -18,7 +15,7 @@ export default function Page2() {
     useEffect(() => {
         const fetchPokemons = async () => {
             const promises = Array.from({ length: 25 }, () =>
-                axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 151) + 1}`)
+                axios.get(`${process.env.REACT_APP_API_URL}${Math.floor(Math.random() * 151) + 1}`)
             );
             const results = await Promise.all(promises);
             setPokemons(results.map(res => res.data));
@@ -36,7 +33,7 @@ export default function Page2() {
     };
 
     const fetchPokemonData = async (pokemonId) => {
-        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}${pokemonId}`);
         return {
             id: response.data.id,
             name: response.data.name,

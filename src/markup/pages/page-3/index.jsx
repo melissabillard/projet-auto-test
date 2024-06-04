@@ -53,7 +53,7 @@ const Page3 = () => {
 
     const fetchPokemonImages = async () => {
         const promises = Array.from({ length: 9 }, () =>
-            axios.get(`https://pokeapi.co/api/v2/pokemon/${Math.floor(Math.random() * 151) + 1}`)
+            axios.get(`${process.env.REACT_APP_API_URL}${Math.floor(Math.random() * 151) + 1}`)
         );
         const results = await Promise.all(promises);
         return results.map(({ data }) => ({

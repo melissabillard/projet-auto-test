@@ -19,7 +19,7 @@ export default function Page1() {
             if (questionNumber >= 5) return;
 
             let firstType, secondType;
-            const response = await axios.get("https://pokeapi.co/api/v2/pokemon/");
+            const response = await axios.get(process.env.REACT_APP_API_URL);
             const randomPokemon = response.data.results[Math.floor(Math.random() * response.data.results.length)];
             const pokemonResponse = await axios.get(randomPokemon.url);
             const { name, types, sprites } = pokemonResponse.data;
