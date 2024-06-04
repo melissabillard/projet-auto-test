@@ -30,20 +30,20 @@ Webservice : [https://pokeapi.co/](https://pokeapi.co/)
 
 ### Test unitaire
 
-| Libellé            | Objectif du Test                                      | Valeur Retournée                |
+| Libellé            | Objectif du Test                                      | Valeur attendue                |
 |--------------------|-------------------------------------------------------|---------------------------------|
 | Test ....      | .... | True |
 
 ### Test graphique
 
-| Libellé            | Objectif du Test                                      | Valeur Retournée                |
+| Libellé            | Objectif du Test                                      | Valeur attendue                |
 |--------------------|-------------------------------------------------------|---------------------------------|
 | Test ....      | .... | True |
 
 
 ### Test d'intégration
 
-| Libellé            | Objectif du Test                                      | Valeur Retournée                |
+| Libellé            | Objectif du Test                                      | Valeur attendue                |
 |--------------------|-------------------------------------------------------|---------------------------------|
 | Test ....      | .... | True |
 
