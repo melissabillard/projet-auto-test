@@ -24,15 +24,19 @@ Webservice : [https://pokeapi.co/](https://pokeapi.co/)
 
 ![](./src/assets/docs/test-1.png)
 
-3) Test avec coverage : ```npm run test:cov```
+2) Test avec coverage : ```npm run test:cov```
 
 ![](./src/assets/docs/test-2.png)
 
 ### Test unitaire
 
+| Libellé            | Objectif du Test                                      | Valeur Retournée                |
+|--------------------|-------------------------------------------------------|---------------------------------|
+| Test ....      | .... | True |
+
 ### Test graphique
 
-### Test d"intégration
+### Test d'intégration
 
 ## Déploiement
 - [Netlify](https://www.netlify.com/)
