@@ -30,8 +30,6 @@ Webservice : [https://pokeapi.co/](https://pokeapi.co/)
 
 ### Test unitaire
 
-# Présentation des Tests
-
 | Libellé            | Objectif du Test                                      | Valeur attendue                | Page                | Chemin d'accès            |
 |--------------------|-------------------------------------------------------|---------------------------------|---------------------|----------------------------|
 | Test ...      | ... | True                            | Home  |url de la page (prod)          |
