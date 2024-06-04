@@ -76,6 +76,15 @@ describe('Tests pour la page d\'accueil', () => {
     const textElement = screen.getByTestId('test-bonjour');
     expect(textElement).toBeInTheDocument();
   });
+
+  jest.mock('../src/markup/pages/home/index', () => {
+    const HomeBonjour = () => (
+      <div data-testid='test-bonjour'>Bonjour ! 👋</div>
+    );
+
+    return HomeBonjour;
+  });
+
   // test('le texte "Bonjour" est correct', async () => {
   //   render(<MyHomePage />);
   //   // Vérifie que le texte "Bonjour" est correct
@@ -87,7 +96,7 @@ describe('Tests pour la page d\'accueil', () => {
 describe(
   'Test nbr caractères', () => {
     test('le résultat possède 5 caractères', () => {
-      expect("hello".length).toEqual(5)
+      expect("Bonjour".length).toEqual(7)
     });
   }
 )

@@ -21,9 +21,7 @@ export default class Home extends React.Component {
         return (
             <header className="App-header">
                 <img src={require("../../../assets/pic1.png")} className="App-logo" alt="logo" style={styles.logo} />
-                <p data-testid="test-bonjour">
-                    Bonjour ! 👋
-                </p>
+                <p data-testid="test-bonjour">Bonjour ! 👋</p>
                 <span class="pikachu-button" style={styles.wrapper}>
                     <Link to="/page-1">
                         <img src={require("../../../assets/ball_blue.png")} className="img-shake" alt="blue pokeball" style={styles.ball} />
