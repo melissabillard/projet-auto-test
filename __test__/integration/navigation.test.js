@@ -19,7 +19,6 @@ describe('Home to Page2 Integration Test', () => {
       </MemoryRouter>
     );
 
-
     // Verify Home page initial content
     expect(screen.getByText('Bonjour ! 👋')).toBeInTheDocument();
     expect(screen.getByAltText('blue pokeball')).toBeInTheDocument();
