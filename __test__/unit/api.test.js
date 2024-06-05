@@ -3,6 +3,7 @@ const MockAdapter = require('axios-mock-adapter');
 
 const mock = new MockAdapter(axios);
 const apiUrl = process.env.REACT_APP_API_URL
+const apiMoveUrl = process.env.REACT_APP_API_MOVE_URL
 
 // API integration test with mock
 describe('PokeAPI Integration Tests', () => {
@@ -25,10 +26,10 @@ describe('PokeAPI Integration Tests', () => {
           { ability: { name: 'chlorophyll' } }
         ],
         moves: [
-          { move: { name: 'tackle', url: 'https://pokeapi.co/api/v2/move/1/' }, power: 40 },
-          { move: { name: 'vine whip', url: 'https://pokeapi.co/api/v2/move/2/' }, power: 45 },
-          { move: { name: 'razor leaf', url: 'https://pokeapi.co/api/v2/move/3/' }, power: 55 },
-          { move: { name: 'solar beam', url: 'https://pokeapi.co/api/v2/move/4/' }, power: 120 }
+          { move: { name: 'tackle', url: `${process.env.REACT_APP_API_URL}1/` }, power: 40 },
+          { move: { name: 'vine whip', url: `${process.env.REACT_APP_API_URL}2/` }, power: 45 },
+          { move: { name: 'razor leaf', url: `${process.env.REACT_APP_API_URL}3/` }, power: 55 },
+          { move: { name: 'solar beam', url: `${process.env.REACT_APP_API_URL}4/` }, power: 120 }
         ],
       };
   
