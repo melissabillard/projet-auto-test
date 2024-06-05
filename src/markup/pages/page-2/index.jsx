@@ -3,7 +3,7 @@ import { fetchPokemonData, calculateDamage } from '../../utils/pokemonUtil';
 import axios from 'axios';
 import { useSpring, animated } from 'react-spring';
 
-export default function Page2() {
+const Page2 = () => {
     const [playerPokemon, setPlayerPokemon] = useState(null);
     const [opponentPokemon, setOpponentPokemon] = useState(null);
     const [pokemons, setPokemons] = useState([]);
@@ -111,7 +111,7 @@ export default function Page2() {
                         {!playerPokemon ? (
                             <div className="pokemon-selection">
                                 {pokemons.map(pokemon => (
-                                    <div key={pokemon.id} onClick={() => handleSelectPokemon(pokemon)}>
+                                    <div key={pokemon.id} data-testid="selected-pokemon" onClick={() => handleSelectPokemon(pokemon)}>
                                         <img src={pokemon.sprites.front_default} alt={pokemon.name} />
                                         <p>{pokemon.name}</p>
                                     </div>
@@ -121,7 +121,7 @@ export default function Page2() {
                             opponentPokemon && (
                                 <div className="battle-arena">
                                     <div className="pokemon-row">
-                                        <div className="pokemon-player">
+                                        <div className="pokemon-player" >
                                             <img src={playerPokemon.image} alt={playerPokemon.name} />
                                             <div className="stats">
                                                 <p>{playerPokemon.name}</p>
@@ -166,3 +166,5 @@ export default function Page2() {
         </>
     );
 }
+
+export default Page2;

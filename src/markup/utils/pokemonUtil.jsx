@@ -1,18 +1,27 @@
 import axios from 'axios';
 
+
+export const fetchMoveData = async (moveUrl) => {
+    const response = await axios.get(moveUrl);
+    return {
+        name: response.data.name,
+        url: moveUrl,
+        power: response.data.power !== null && response.data.power !== undefined ? response.data.power : 40
+    };
+};
+
 export const fetchPokemonData = async (pokemonId) => {
     const response = await axios.get(`${process.env.REACT_APP_API_URL}${pokemonId}`);
+    const moveDetailsPromises = response.data.moves.slice(0, 4).map(move => fetchMoveData(move.move.url));
+    const moveDetails = await Promise.all(moveDetailsPromises);
+
     return {
         id: response.data.id,
         name: response.data.name,
         image: response.data.sprites.front_default,
         stats: response.data.stats,
         abilities: response.data.abilities,
-        moves: response.data.moves.slice(0, 4).map(move => ({
-            name: move.move.name,
-            url: move.move.url,
-            power: move.move.power !== null ? move.move.power : 40
-        }))
+        moves: moveDetails
     };
 };
 
