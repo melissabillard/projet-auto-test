@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { fetchPokemonData, calculateDamage } from '../../utils/pokemonUtil';
 import axios from 'axios';
 import { useSpring, animated } from 'react-spring';
 
-export default function Page2() {
+const Page2 = () => {
     const [playerPokemon, setPlayerPokemon] = useState(null);
     const [opponentPokemon, setOpponentPokemon] = useState(null);
     const [pokemons, setPokemons] = useState([]);
@@ -32,34 +33,8 @@ export default function Page2() {
         setGameOver(false);
     };
 
-    const fetchPokemonData = async (pokemonId) => {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}${pokemonId}`);
-        return {
-            id: response.data.id,
-            name: response.data.name,
-            image: response.data.sprites.front_default,
-            stats: response.data.stats,
-            abilities: response.data.abilities,
-            moves: response.data.moves.slice(0, 4).map(move => ({
-                name: move.move.name,
-                url: move.move.url,
-                power: move.move.power !== null ? move.move.power : 40
-            }))
-        };
-    };
-
-    const calculateDamage = (attacker, defender, move) => {
-        const attackStat = attacker.stats.find(stat => stat.stat.name === 'attack').base_stat;
-        const defenseStat = defender.stats.find(stat => stat.stat.name === 'defense').base_stat;
-        const baseDamage = move.power !== null && move.power !== undefined ? move.power : 40;
-
-        const randomFactor = Math.random() * (1 - 0.85) + 0.85;
-        const damage = (((2 * 50 / 5 + 2) * baseDamage * attackStat / defenseStat) / 50 + 2) * randomFactor;
-        return Math.floor(damage);
-    };
-
     const handleAttack = (attacker, defender, move, attackerType) => {
-        if (gameOver) return; // Si le jeu est terminé, ne pas permettre l'attaque
+        if (gameOver) return;
 
         const damage = calculateDamage(attacker, defender, move);
         setDamage(damage);
@@ -98,7 +73,7 @@ export default function Page2() {
         if (playerPokemon && playerPokemon.currentHP === 0) {
             setGameOver(true);
         } else if (opponentPokemon && opponentPokemon.currentHP === 0) {
-            setGameOver(true); 
+            setGameOver(true);
         }
     }, [playerPokemon, opponentPokemon]);
 
@@ -126,17 +101,17 @@ export default function Page2() {
             </animated.div>
         );
     };
+
     return (
         <>
             <header className="App-header">
                 <div className="jeu-wrapper">
                     <h1 className='font-page-2'>Pokémon Battle Simulator</h1>
-                
                     <div className="App-body">
                         {!playerPokemon ? (
                             <div className="pokemon-selection">
                                 {pokemons.map(pokemon => (
-                                    <div key={pokemon.id} onClick={() => handleSelectPokemon(pokemon)}>
+                                    <div key={pokemon.id} data-testid="selected-pokemon" onClick={() => handleSelectPokemon(pokemon)}>
                                         <img src={pokemon.sprites.front_default} alt={pokemon.name} />
                                         <p>{pokemon.name}</p>
                                     </div>
@@ -146,7 +121,7 @@ export default function Page2() {
                             opponentPokemon && (
                                 <div className="battle-arena">
                                     <div className="pokemon-row">
-                                        <div className="pokemon-player">
+                                        <div className="pokemon-player" >
                                             <img src={playerPokemon.image} alt={playerPokemon.name} />
                                             <div className="stats">
                                                 <p>{playerPokemon.name}</p>
@@ -177,11 +152,11 @@ export default function Page2() {
                                         <div ref={logEndRef} />
                                     </div>
                                     {gameOver && (
-                                    <div className="game-over">
-                                        <p>{playerPokemon?.currentHP === 0 ? 'You lost the battle!' : 'You won the battle!'}</p>
-                                        <button className="bt-restart" onClick={resetGame}>Restart Game</button>
-                                    </div>
-                                )}
+                                        <div className="game-over">
+                                            <p>{playerPokemon?.currentHP === 0 ? 'You lost the battle!' : 'You won the battle!'}</p>
+                                            <button className="bt-restart" onClick={resetGame}>Restart Game</button>
+                                        </div>
+                                    )}
                                 </div>
                             )
                         )}
@@ -191,3 +166,5 @@ export default function Page2() {
         </>
     );
 }
+
+export default Page2;
