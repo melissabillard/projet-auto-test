@@ -1,7 +1,9 @@
 name: Integration continue
 
-on: [pull_request]
-
+on: 
+  push:
+    branches : 
+      - main
 jobs:
   buildAndTest:
     name: Build and Test
