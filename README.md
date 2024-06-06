@@ -49,11 +49,17 @@ Webservice : [https://pokeapi.co/](https://pokeapi.co/)
 ## Intégration continue
 Nous avons mis en place un pipeline d'intégration continue (CI) avec GitHub Actions, qui surveille les commits sur la branche principale (main), exécute automatiquement les tests, et fusionne le code sur la branche de production (release) si les tests réussissent, garantissant ainsi une base de code stable et prête pour le déploiement.
 
-![](./src/assets/docs/CI.png)
+![](./src/assets/CI.png)
 
-## Déploiement continue
-
-## Déploiement
+## Hébergement et cloud computing
 - [Netlify](https://www.netlify.com/)
 
 **Lien d'accès :** [https://jeu-pokemon.netlify.app/](https://jeu-pokemon.netlify.app/)
+
+## Déploiement continu
+Pour le déploiement continu, si aucune erreur n'est détectée dans le commit de la branche `release` envoyé à Netlify (deuxième vérification), alors le commit sera poussé en production.
+
+![](./src/assets/netlify-1.png)
+
+![](./src/assets/netlify-2.png)
+
