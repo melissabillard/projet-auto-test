@@ -59,6 +59,7 @@ Nous avons mis en place un pipeline d'intégration continue (CI) avec GitHub Act
 ## Déploiement continu
 Pour le déploiement continu, si aucune erreur n'est détectée dans le commit de la branche `release` envoyé à Netlify (deuxième vérification), alors le commit sera poussé en production.
 
-![](./src/assets/CI.png)
-![](./src/assets/CI.png)
+![](./src/assets/netlify-1.png)
+
+![](./src/assets/netlify-2.png)
 
