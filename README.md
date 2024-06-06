@@ -18,7 +18,7 @@ Webservice : [https://pokeapi.co/](https://pokeapi.co/)
 
 - [JEST](https://jestjs.io/fr/docs/getting-started)
 
-### Exécution
+### Exécuter les tests
 
 1) Test standard : ```npm test```
 
@@ -30,9 +30,18 @@ Webservice : [https://pokeapi.co/](https://pokeapi.co/)
 
 ### Test unitaire
 
-| Libellé            | Objectif du Test                                      | Valeur attendue                | Page                |
-|--------------------|-------------------------------------------------------|--------------------------------|---------------------|
-| Test ...           | ...                                                   | True                           | Home                |
+| Libellé                                       | Objectif du Test                                                | Valeur attendue | Fichier                    |
+|-----------------------------------------------|-----------------------------------------------------------------|-----------------|----------------------------|
+| fetchPokemonImages should fetch and return... | Vérifier que fetchPokemonImages récupère et renvoie les images de pokémon | True          | memory.test.js            |
+| shuffleArray should shuffle the array         | Vérifier que shuffleArray mélange correctement le tableau       | True            | memory.test.js            |
+| startGame initializes the game correctly      | Vérifier que startGame initialise correctement le jeu           | True            | memory.test.js            |
+| handleCardClick updates flipped cards and... | Vérifier que handleCardClick met à jour les cartes retournées et les paires correspondantes correctement | True | memory.test.js          |
+| fetches Pokémon options on load               | Vérifier que les options de Pokémon sont récupérées au chargement | True           | Page2.unit.test.js       |
+| fetchMoveData fetches move data correctly    | Vérifier que fetchMoveData récupère correctement les données de mouvement | True         | pokemonUtils.test.js     |
+| fetchPokemonData fetches Pokémon data...     | Vérifier que fetchPokemonData récupère correctement les données de Pokémon | True         | pokemonUtils.test.js     |
+| handles errors when fetching Pokémon data    | Vérifier que les erreurs sont gérées lors de la récupération des données de Pokémon | True        | pokemonUtils.test.js     |
+| calculates damage correctly                  | Vérifier que calculateDamage calcule correctement les dégâts   | True            | pokemonUtils.test.js     |
+| calculates damage with random factor         | Vérifier que calculateDamage calcule correctement les dégâts avec un facteur aléatoire | True | pokemonUtils.test.js     |
 
 ### Test graphique
 
