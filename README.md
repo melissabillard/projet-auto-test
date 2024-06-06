@@ -60,6 +60,16 @@ Webservice : [https://pokeapi.co/](https://pokeapi.co/)
 | Renders the game start screen       | Vérifier le rendu de l'écran de démarrage du jeu      | True                           | Page3               | memorygraphic.test.js      |
 | Starts the game when the start button is clicked | Vérifier que le jeu démarre lorsque le bouton de démarrage est cliqué | True      | Page3               | memorygraphic.test.js      |
 | Flips a card when clicked           | Vérifier qu'une carte est retournée lorsqu'elle est cliquée | True                     | Page3               | memorygraphic.test.js      |
+| Renders composant Page1 correctement | Vérifier le rendu correct du composant Page1         | True                           | Page1               | page1.test.js              |
+| A les liens de navigation            | Vérifier la présence et les destinations des liens de navigation | True                | Page1               | page1.test.js              |
+| Vérifier les classes CSS            | Vérifier que les classes CSS sont appliquées correctement | True                        | Page1               | page1.test.js              |
+| Vérifier les styles inline corrects | Vérifier que les styles inline sont correctement appliqués | True                     | Page1               | page1.test.js              |
+| Simuler les interactions des utilisateurs | Vérifier le comportement des interactions utilisateur | True                    | Page1               | page1.test.js              |
+| Le texte "What type is pokemon1?" est présent | Vérifier que le texte "What type is pokemon1?" est présent | True               | Page1               | page1.test.js              |
+| Les options de type de Pokémon sont affichées | Vérifier que les options de type de Pokémon sont affichées | True                | Page1               | page1.test.js              |
+| Les options de type de Pokémon sont correctes | Vérifier que les options de type de Pokémon correspondent aux données de test | True | Page1               | page1.test.js              |
+| Le clic sur une option affiche le message correct | Vérifier que le clic sur une option affiche le message correct | True              | Page1               | page1.test.js              |
+| Le clic sur la question suivante met à jour la question | Vérifier que le clic sur la question suivante met à jour la question | True         | Page1               | page1.test.js              |
 
 ### Test d'intégration
 
