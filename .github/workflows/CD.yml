@@ -1,4 +1,4 @@
-name: Deploiment continue
+name: Deploiement continue
 
 on:
   push:
@@ -23,12 +23,18 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy staging
+      - name: Deploy staging to Netlify
         if: github.ref == 'refs/heads/release'
-        run: echo "Deploying to staging"
-        # Here you should add your deployment steps for staging
+        run: echo "Deploying to staging on Netlify"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.STAGING_NETLIFY_SITE_ID }}
+        # Here you can add a simulated deploy step or leave as is for demo purposes
 
-      - name: Deploy production
+      - name: Deploy production to Netlify
         if: github.ref == 'refs/heads/main'
-        run: echo "Deploying to production"
-        # Here you should add your deployment steps for production
+        run: echo "Deploying to production on Netlify"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.PRODUCTION_NETLIFY_SITE_ID }}
+        # Here you can add a simulated deploy step or leave as is for demo purposes
