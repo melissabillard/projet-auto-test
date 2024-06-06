@@ -51,9 +51,14 @@ Nous avons mis en place un pipeline d'intégration continue (CI) avec GitHub Act
 
 ![](./src/assets/CI.png)
 
-## Déploiement continue
-
-## Déploiement
+## Hébergement et cloud computing
 - [Netlify](https://www.netlify.com/)
 
 **Lien d'accès :** [https://jeu-pokemon.netlify.app/](https://jeu-pokemon.netlify.app/)
+
+## Déploiement continu
+Pour le déploiement continu, si aucune erreur n'est détectée dans le commit de la branche `release` envoyé à Netlify (deuxième vérification), alors le commit sera poussé en production.
+
+![](./src/assets/CI.png)
+![](./src/assets/CI.png)
+
