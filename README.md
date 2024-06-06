@@ -42,9 +42,15 @@ Webservice : [https://pokeapi.co/](https://pokeapi.co/)
 
 ### Test d'intégration
 
-| Libellé            | Objectif du Test                                      | Valeur attendue                | Page                |
-|--------------------|-------------------------------------------------------|--------------------------------|---------------------|
-| Test ...           | ...                                                   | True                           | Home                |
+| Libellé                              | Objectif du Test                                      | Valeur attendue                | Page                | Fichier                    |
+|--------------------------------------|-------------------------------------------------------|--------------------------------|---------------------|----------------------------|
+| Test API 200                         | Vérifier que l'API retourne un statut 200             | True                           | -                   | api.test.js                |
+| Test API 404                         | Vérifier que l'API retourne un statut 404             | True                           | -                   | api.test.js                |
+| Récupération des données d'un Pokémon| Vérifier la structure des données retournées par l'API| True                           | -                   | api.test.js                |
+| Fetch Pokémon Data                   | Vérifier que les données du Pokémon sont récupérées avec succès | True                   | -                   | apiMocks.test.js           |
+| Handle 404 Error                     | Vérifier que l'API gère correctement une erreur 404   | True                           | -                   | apiMocks.test.js           |
+| Retrieve Pokémon Data Structure      | Vérifier la structure des données du Pokémon retournées par l'API | True                   | -                   | apiMocks.test.js           |
+| Navigate from Home to Page2          | Vérifier la navigation de la page Home à la page Page2 | True                           | Home                | navigation.test.js         |
 
 ## Intégration continue
 Nous avons mis en place un pipeline d'intégration continue (CI) avec GitHub Actions, qui surveille les commits sur la branche principale (main), exécute automatiquement les tests, et fusionne le code sur la branche de production (release) si les tests réussissent, garantissant ainsi une base de code stable et prête pour le déploiement.
