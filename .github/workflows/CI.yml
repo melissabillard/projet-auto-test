@@ -2,14 +2,23 @@ name: CI/CD Pipeline
 
 on: 
   push:
-    branches : 
+    branches: 
       - main # Déclenché à chaque nouveau commit sur le main
+
 jobs:
-  buildAndTest:
-    name: Build and Test
+  CI_CD_Pipeline:
+    name: CI/CD Pipeline
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v1
+      - name: Initialize Git User
+        run: |
+          git config --global user.email "${{ secrets.GIT_USER_EMAIL }}"
+          git config --global user.name "${{ secrets.GIT_USER_NAME }}"
+      
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       
       - name: Install dependencies
         run: npm i --force
@@ -27,9 +36,25 @@ jobs:
 
       - name: Check test result
         if: success()  # Si les tests ont réussi
+        run: echo "Test validé"
+
+      - name: Checkout release branch with token
+        if: success()  # Si les tests ont réussi
+        uses: actions/checkout@v2
+        with:
+          ref: release
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
+      - name: Merge main into release
+        if: success()  # Si les tests ont réussi
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
-          echo "Test validé"
-          git checkout release && git merge main --no-ff --no-edit && git push origin release
+          echo "Merging main into release"
+          git pull origin release
+          git fetch origin main
+          git merge origin/main --no-ff --no-edit
+          git push https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/melissabillard/projet-auto-test.git release
           echo "Merge de la branche en production validé"
 
       - name: Check test failure
