@@ -24,7 +24,10 @@ jobs:
 
       - name: Check test result
         if: success()  # Si les tests ont réussi
-        run: echo "Tests réussis !"
+        run: |
+          echo "Test validé"
+          git checkout release && git merge main --no-ff --no-edit && git push origin release
+          echo "Merge de la branche en production validé"
 
       - name: Check test failure
         if: failure()  # Si une étape précédente a échoué
