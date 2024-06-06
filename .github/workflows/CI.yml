@@ -9,6 +9,10 @@ jobs:
   buildAndTest:
     name: Build and Test
     runs-on: ubuntu-latest
+    env:
+      USERNAME: ${{ secrets.HUB_USERNAME }} 
+      PASSWORD: ${{ secrets.HUB_PASSWORD }}
+
     steps:
       - uses: actions/checkout@v1
       
@@ -32,8 +36,6 @@ jobs:
 
       - name: Merge main into release
         if: success()  # Si les tests ont réussi
-        env:
-          GITHUB_TOKEN: ${{ secrets.AUTH_TOKEN }}
         run: |
           echo "Merging main into release"
           git checkout release && git pull origin main && git push origin release
