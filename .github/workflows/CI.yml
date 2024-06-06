@@ -13,7 +13,7 @@ jobs:
         run: npm
 
       - name: Build
-        run: npm build
+        run: npm run build
 
       - name: Test
-        run: npm test --watchAll=false
+        run: npm run test
