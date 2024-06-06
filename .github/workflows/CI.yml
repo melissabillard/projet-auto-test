@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       USERNAME: ${{ secrets.HUB_USERNAME }} 
-      PASSWORD: ${{ secrets.HUB_PASSWORD }}
+      PASSWORD: ${{ secrets.AUTH_TOKEN }}
 
     steps:
       - uses: actions/checkout@v1
