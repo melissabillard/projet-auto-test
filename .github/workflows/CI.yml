@@ -46,6 +46,7 @@ jobs:
           echo "Merging main into release"
           git checkout release
           git pull origin release
+          git fetch origin main
           git merge origin/main --no-ff --no-edit
           git push https://x-access-token:${AUTH_TOKEN}@github.com/melissabillard/projet-auto-test.git release
           echo "Merge de la branche en production validé"
