@@ -16,7 +16,7 @@ jobs:
           git config --global user.email "${{ secrets.GIT_USER_EMAIL }}"
           git config --global user.name "${{ secrets.GIT_USER_NAME }}"
       
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
         with:
           fetch-depth: 0
       
@@ -40,7 +40,7 @@ jobs:
 
       - name: Checkout release branch with token
         if: success()  # Si les tests ont réussi
-        uses: actions/checkout@v2
+        uses: actions/checkout@v1
         with:
           ref: release
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
