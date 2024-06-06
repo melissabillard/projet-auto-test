@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default function Page1() {
@@ -74,7 +75,8 @@ export default function Page1() {
         <>
             <header className="App-header">
                 <div>
-                    <img src={require("../../../assets/pokemonblue.png")} style={{width:"350px"}} alt="image titre pika bleu"/>
+                    <img src={require("../../../assets/pokemonblue.png")} style={{ width: "350px" }} alt="image titre pika bleu" />
+                    <Link to="/" className="bouton-retour">Retour en arrière</Link>
                     {questionNumber < 5 ? (
                         <>
                             <h2>{question}</h2>
