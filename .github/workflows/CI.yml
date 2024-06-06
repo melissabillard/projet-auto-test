@@ -20,6 +20,8 @@ jobs:
         run: npm run build
 
       - name: Test
+        env:
+          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
         run: npm run test -- --watchAll=false  # Exécute les tests une fois et arrête le processus
 
       - name: Check test result
