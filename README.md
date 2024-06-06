@@ -100,4 +100,3 @@ Pour le déploiement continu, si aucune erreur n'est détectée dans le commit d
 ![](./src/assets/netlify-1.png)
 
 ![](./src/assets/netlify-2.png)
-
