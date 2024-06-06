@@ -30,22 +30,26 @@ Webservice : [https://pokeapi.co/](https://pokeapi.co/)
 
 ### Test unitaire
 
-| Libellé            | Objectif du Test                                      | Valeur attendue                | Page                | Chemin d'accès            |
-|--------------------|-------------------------------------------------------|---------------------------------|---------------------|----------------------------|
-| Test ...      | ... | True                            | Home  |url de la page (prod)          |
+| Libellé            | Objectif du Test                                      | Valeur attendue                | Page                |
+|--------------------|-------------------------------------------------------|--------------------------------|---------------------|
+| Test ...           | ...                                                   | True                           | Home                |
 
 ### Test graphique
 
-| Libellé            | Objectif du Test                                      | Valeur attendue                | Page                | Chemin d'accès            |
-|--------------------|-------------------------------------------------------|---------------------------------|---------------------|----------------------------|
-| Test ...      | ... | True                            | Home  |url de la page (prod)          |
-
+| Libellé            | Objectif du Test                                      | Valeur attendue                | Page                |
+|--------------------|-------------------------------------------------------|--------------------------------|---------------------|
+| Test ...           | ...                                                   | True                           | Home                |
 
 ### Test d'intégration
 
-| Libellé            | Objectif du Test                                      | Valeur attendue                | Page                | Chemin d'accès            |
-|--------------------|-------------------------------------------------------|---------------------------------|---------------------|----------------------------|
-| Test ...      | ... | True                            | Home  |url de la page (prod)          |
+| Libellé            | Objectif du Test                                      | Valeur attendue                | Page                |
+|--------------------|-------------------------------------------------------|--------------------------------|---------------------|
+| Test ...           | ...                                                   | True                           | Home                |
+
+## Intégration continue
+Nous avons mis en place un pipeline d'intégration continue (CI) avec GitHub Actions, qui surveille les commits sur la branche principale, exécute automatiquement les tests unitaires, et fusionne le code sur la branche de production (release) si les tests réussissent, garantissant ainsi une base de code stable et prête pour le déploiement.
+
+## Déploiement continue
 
 ## Déploiement
 - [Netlify](https://www.netlify.com/)
