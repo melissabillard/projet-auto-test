@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+const apiUrl = process.env.REACT_APP_API_URL
 
 export const fetchMoveData = async (moveUrl) => {
     const response = await axios.get(moveUrl);
@@ -11,7 +12,7 @@ export const fetchMoveData = async (moveUrl) => {
 };
 
 export const fetchPokemonData = async (pokemonId) => {
-    const response = await axios.get(`${process.env.REACT_APP_API_URL}${pokemonId}`);
+    const response = await axios.get(`${apiUrl}${pokemonId}`);
     const moveDetailsPromises = response.data.moves.slice(0, 4).map(move => fetchMoveData(move.move.url));
     const moveDetails = await Promise.all(moveDetailsPromises);
 
