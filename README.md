@@ -20,6 +20,8 @@ Webservice : [https://pokeapi.co/](https://pokeapi.co/)
 
 ### Exécuter les tests
 
+**Total** : 32 tests.
+
 1) Test standard : ```npm test```
 
 ![](./src/assets/docs/test-1.png)
