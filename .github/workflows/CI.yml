@@ -33,7 +33,7 @@ jobs:
       - name: Merge main into release
         if: success()  # Si les tests ont réussi
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.AUTH_TOKEN }}
         run: |
           echo "Merging main into release"
           git checkout release && git pull origin main && git push origin release
