@@ -50,12 +50,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
-          echo "Merging main into release"
-          git pull origin release
-          git fetch origin main
-          git merge origin/main --no-ff --no-edit
-          git push https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/melissabillard/projet-auto-test.git release
-          echo "Merge de la branche en production validé"
+            echo "Forcing main into release"
+            git fetch origin main
+            git checkout -B release origin/main
+            git push --force https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/melissabillard/projet-auto-test.git release
+            echo "Force push de la branche main vers release validé"
 
       - name: Check test failure
         if: failure()  # Si une étape précédente a échoué
