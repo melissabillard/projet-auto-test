@@ -1,0 +1,7 @@
+name: Deploiemment continue
+
+on:
+  push:
+    branches:
+      - main
+      - release
