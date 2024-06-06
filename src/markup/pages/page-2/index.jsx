@@ -3,6 +3,96 @@ import { fetchPokemonData, calculateDamage } from '../../utils/pokemonUtil';
 import axios from 'axios';
 import { useSpring, animated } from 'react-spring';
 
+
+const API_URL = process.env.REACT_APP_API_URL;
+
+export const useFetchPokemons = (setPokemons) => {
+    useEffect(() => {
+        const fetchPokemons = async () => {
+            const promises = Array.from({ length: 25 }, () =>
+                axios.get(`${API_URL}${Math.floor(Math.random() * 151) + 1}`)
+            );
+            const results = await Promise.all(promises);
+            setPokemons(results.map(res => res.data));
+        };
+        fetchPokemons();
+    }, [setPokemons]);
+};
+
+export const handleSelectPokemon = async (pokemon, setPlayerPokemon, setOpponentPokemon, setGameOver) => {
+    const selectedPokemon = await fetchPokemonData(pokemon.id);
+    setPlayerPokemon({ ...selectedPokemon, currentHP: 100, totalHP: 100 });
+    const randomId = Math.floor(Math.random() * 151) + 1;
+    const fetchedOpponentPokemon = await fetchPokemonData(randomId);
+    setOpponentPokemon({ ...fetchedOpponentPokemon, currentHP: 100, totalHP: 100 });
+    setGameOver(false);
+};
+
+export const handleAttack = (attacker, defender, move, attackerType, setDamage, setPlayerPokemon, setOpponentPokemon, setBattleLog, gameOver) => {
+    if (gameOver) return;
+
+    const damage = calculateDamage(attacker, defender, move);
+    setDamage(damage);
+    if (attackerType === 'player') {
+        setOpponentPokemon((prev) => ({
+            ...prev,
+            currentHP: Math.max(prev.currentHP - damage, 0),
+        }));
+    } else {
+        setPlayerPokemon((prev) => ({
+            ...prev,
+            currentHP: Math.max(prev.currentHP - damage, 0),
+        }));
+    }
+    setBattleLog((prev) => [...prev, `${attacker.name} used ${move.name}! It did ${damage} damage!`]);
+};
+
+export const handleSelectMove = (move, turn, setTurn, playerPokemon, opponentPokemon, setDamage, setPlayerPokemon, setOpponentPokemon, setBattleLog, gameOver) => {
+    if (turn === 'player') {
+        handleAttack(playerPokemon, opponentPokemon, move, 'player', setDamage, setPlayerPokemon, setOpponentPokemon, setBattleLog, gameOver);
+        setTurn('opponent');
+    }
+};
+
+export const useOpponentTurn = (turn, opponentPokemon, playerPokemon, setTurn, handleAttack, gameOver) => {
+    useEffect(() => {
+        if (turn === 'opponent' && opponentPokemon && playerPokemon && !gameOver) {
+            const randomMove = opponentPokemon.moves[Math.floor(Math.random() * opponentPokemon.moves.length)];
+            setTimeout(() => {
+                handleAttack(opponentPokemon, playerPokemon, randomMove, 'opponent');
+                setTurn('player');
+            }, 1000);
+        }
+    }, [turn, opponentPokemon, playerPokemon, handleAttack, setTurn, gameOver]);
+};
+
+export const useCheckGameOver = (playerPokemon, opponentPokemon, setGameOver) => {
+    useEffect(() => {
+        if (playerPokemon && playerPokemon.currentHP === 0) {
+            setGameOver(true);
+        } else if (opponentPokemon && opponentPokemon.currentHP === 0) {
+            setGameOver(true);
+        }
+    }, [playerPokemon, opponentPokemon, setGameOver]);
+};
+
+export const useScrollToLogEnd = (battleLog, logEndRef) => {
+    useEffect(() => {
+        if (logEndRef.current) {
+            logEndRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [battleLog, logEndRef]);
+};
+
+export const BattleAnimation = ({ damage }) => {
+    const props = useSpring({ from: { opacity: 0 }, to: { opacity: 1 } });
+    return (
+        <animated.div style={props} className="animated">
+            <p>{`Damage: ${damage}`}</p>
+        </animated.div>
+    );
+};
+
 const Page2 = () => {
     const [playerPokemon, setPlayerPokemon] = useState(null);
     const [opponentPokemon, setOpponentPokemon] = useState(null);
@@ -13,75 +103,10 @@ const Page2 = () => {
     const [gameOver, setGameOver] = useState(false);
     const logEndRef = useRef(null);
 
-    useEffect(() => {
-        const fetchPokemons = async () => {
-            const promises = Array.from({ length: 25 }, () =>
-                axios.get(`${process.env.REACT_APP_API_URL}${Math.floor(Math.random() * 151) + 1}`)
-            );
-            const results = await Promise.all(promises);
-            setPokemons(results.map(res => res.data));
-        };
-        fetchPokemons();
-    }, []);
-
-    const handleSelectPokemon = async (pokemon) => {
-        const selectedPokemon = await fetchPokemonData(pokemon.id);
-        setPlayerPokemon({ ...selectedPokemon, currentHP: 100, totalHP: 100 });
-        const randomId = Math.floor(Math.random() * 151) + 1;
-        const fetchedOpponentPokemon = await fetchPokemonData(randomId);
-        setOpponentPokemon({ ...fetchedOpponentPokemon, currentHP: 100, totalHP: 100 });
-        setGameOver(false);
-    };
-
-    const handleAttack = (attacker, defender, move, attackerType) => {
-        if (gameOver) return;
-
-        const damage = calculateDamage(attacker, defender, move);
-        setDamage(damage);
-        if (attackerType === 'player') {
-            setOpponentPokemon((prev) => ({
-                ...prev,
-                currentHP: Math.max(prev.currentHP - damage, 0),
-            }));
-        } else {
-            setPlayerPokemon((prev) => ({
-                ...prev,
-                currentHP: Math.max(prev.currentHP - damage, 0),
-            }));
-        }
-        setBattleLog((prev) => [...prev, `${attacker.name} used ${move.name}! It did ${damage} damage!`]);
-    };
-
-    const handleSelectMove = (move) => {
-        if (turn === 'player') {
-            handleAttack(playerPokemon, opponentPokemon, move, 'player');
-            setTurn('opponent');
-        }
-    };
-
-    useEffect(() => {
-        if (turn === 'opponent' && opponentPokemon && playerPokemon && !gameOver) {
-            const randomMove = opponentPokemon.moves[Math.floor(Math.random() * opponentPokemon.moves.length)];
-            setTimeout(() => {
-                handleAttack(opponentPokemon, playerPokemon, randomMove, 'opponent');
-                setTurn('player');
-            }, 1000);
-        }
-    }, [turn, opponentPokemon, playerPokemon, gameOver]);
-
-    useEffect(() => {
-        if (playerPokemon && playerPokemon.currentHP === 0) {
-            setGameOver(true);
-        } else if (opponentPokemon && opponentPokemon.currentHP === 0) {
-            setGameOver(true);
-        }
-    }, [playerPokemon, opponentPokemon]);
-
-    useEffect(() => {
-        if (logEndRef.current) {
-            logEndRef.current.scrollIntoView({ behavior: 'smooth' });
-        }
-    }, [battleLog]);
+    useFetchPokemons(setPokemons);
+    useOpponentTurn(turn, opponentPokemon, playerPokemon, setTurn, (attacker, defender, move, attackerType) => handleAttack(attacker, defender, move, attackerType, setDamage, setPlayerPokemon, setOpponentPokemon, setBattleLog, gameOver), gameOver);
+    useCheckGameOver(playerPokemon, opponentPokemon, setGameOver);
+    useScrollToLogEnd(battleLog, logEndRef);
 
     const resetGame = () => {
         setPlayerPokemon(null);
@@ -90,16 +115,6 @@ const Page2 = () => {
         setTurn('player');
         setBattleLog([]);
         setGameOver(false);
-    };
-
-    const BattleAnimation = ({ damage }) => {
-        const props = useSpring({ from: { opacity: 0 }, to: { opacity: 1 } });
-
-        return (
-            <animated.div style={props} className="animated">
-                <p>{`Damage: ${damage}`}</p>
-            </animated.div>
-        );
     };
 
     return (
@@ -111,7 +126,7 @@ const Page2 = () => {
                         {!playerPokemon ? (
                             <div className="pokemon-selection">
                                 {pokemons.map(pokemon => (
-                                    <div key={pokemon.id} data-testid="selected-pokemon" onClick={() => handleSelectPokemon(pokemon)}>
+                                    <div key={pokemon.id} data-testid="selected-pokemon" onClick={() => handleSelectPokemon(pokemon, setPlayerPokemon, setOpponentPokemon, setGameOver)}>
                                         <img src={pokemon.sprites.front_default} alt={pokemon.name} />
                                         <p>{pokemon.name}</p>
                                     </div>
@@ -138,7 +153,7 @@ const Page2 = () => {
                                     </div>
                                     <div className="actions">
                                         {playerPokemon.moves.map(move => (
-                                            <button className='bt-quizz' key={move.name} onClick={() => handleSelectMove(move)} disabled={turn !== 'player'}>{move.name}</button>
+                                            <button className='bt-quizz' key={move.name} onClick={() => handleSelectMove(move, turn, setTurn, playerPokemon, opponentPokemon, setDamage, setPlayerPokemon, setOpponentPokemon, setBattleLog, gameOver)} disabled={turn !== 'player'}>{move.name}</button>
                                         ))}
                                     </div>
                                     <BattleAnimation damage={damage} />
@@ -165,6 +180,6 @@ const Page2 = () => {
             </header>
         </>
     );
-}
+};
 
 export default Page2;
