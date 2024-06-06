@@ -6,20 +6,16 @@ on:
       - main # Déclenché à chaque nouveau commit sur le main
 
 jobs:
-  initializeGitUser:
-      name: Initialize Git User
-      runs-on: ubuntu-latest
-      steps:
-        - name: Set Git User
-          run: |
-            git config --global user.email "${{ secrets.GIT_USER_EMAIL }}"
-            git config --global user.name "${{ secrets.GIT_USER_NAME }}"
-            
-  buildAndTest:
-    name: Build and Test
+  CI_CD_Pipeline:
+    name: CI/CD Pipeline
     runs-on: ubuntu-latest
 
     steps:
+      - name: Initialize Git User
+        run: |
+          git config --global user.email "${{ secrets.GIT_USER_EMAIL }}"
+          git config --global user.name "${{ secrets.GIT_USER_NAME }}"
+      
       - uses: actions/checkout@v1
       
       - name: Install dependencies
