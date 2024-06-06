@@ -20,6 +20,63 @@ const Card = ({ pokemon, isFlipped, onClick }) => {
     );
 };
 
+export const fetchPokemonImages = async () => {
+    const promises = Array.from({ length: 9 }, () =>
+        axios.get(`${process.env.REACT_APP_API_URL}${Math.floor(Math.random() * 151) + 1}`)
+    );
+    const results = await Promise.all(promises);
+    return results.map(({ data }) => ({
+        id: data.id,
+        name: data.name,
+        image: data.sprites.front_default,
+    }));
+};
+
+export const shuffleArray = (array) => {
+    return array.sort(() => Math.random() - 0.5);
+};
+
+export const startGame = async (setGameStarted, setTime, setFlippedCards, setMatchedPairs, setCards, setTimerInterval) => {
+    setGameStarted(true);
+    setTime(0);
+    setFlippedCards([]);
+    setMatchedPairs([]);
+
+    const fetchedPokemons = await fetchPokemonImages();
+    const shuffledCards = shuffleArray(
+        [...fetchedPokemons, ...fetchedPokemons].map((pokemon, index) => ({
+            ...pokemon,
+            uniqueId: index
+        }))
+    );
+    setCards(shuffledCards);
+
+    // Démarrer le chronomètre
+    const interval = setInterval(() => {
+        setTime((prevTime) => prevTime + 1);
+    }, 1000);
+    setTimerInterval(interval);
+};
+
+export const handleCardClick = (pokemon, flippedCards, matchedPairs, setFlippedCards, setMatchedPairs, setCanFlip, canFlip) => {
+    if (flippedCards.length === 2 || flippedCards.some(card => card.uniqueId === pokemon.uniqueId) || matchedPairs.includes(pokemon.id) || !canFlip) return;
+
+    setFlippedCards((prev) => [...prev, pokemon]);
+
+    if (flippedCards.length === 1) {
+        if (flippedCards[0].id === pokemon.id) {
+            setMatchedPairs((prev) => [...prev, pokemon.id]);
+            setFlippedCards([]);
+        } else {
+            setCanFlip(false); // Empêcher de retourner d'autres cartes
+            setTimeout(() => {
+                setFlippedCards([]);
+                setCanFlip(true); // Réactiver le retournement des cartes
+            }, 1000);
+        }
+    }
+};
+
 const Page3 = () => {
     const [gameStarted, setGameStarted] = useState(false);
     const [time, setTime] = useState(0);
@@ -28,63 +85,6 @@ const Page3 = () => {
     const [matchedPairs, setMatchedPairs] = useState([]);
     const [canFlip, setCanFlip] = useState(true);
     const [timerInterval, setTimerInterval] = useState(null); // Nouvelle variable d'état pour le chronomètre
-
-    const startGame = async () => {
-        setGameStarted(true);
-        setTime(0);
-        setFlippedCards([]);
-        setMatchedPairs([]);
-
-        const fetchedPokemons = await fetchPokemonImages();
-        const shuffledCards = shuffleArray(
-            [...fetchedPokemons, ...fetchedPokemons].map((pokemon, index) => ({
-                ...pokemon,
-                uniqueId: index // Assigner un identifiant unique à chaque carte
-            }))
-        );
-        setCards(shuffledCards);
-
-        // Démarrer le chronomètre
-        const interval = setInterval(() => {
-            setTime((prevTime) => prevTime + 1);
-        }, 1000);
-        setTimerInterval(interval);
-    };
-
-    const fetchPokemonImages = async () => {
-        const promises = Array.from({ length: 9 }, () =>
-            axios.get(`${process.env.REACT_APP_API_URL}${Math.floor(Math.random() * 151) + 1}`)
-        );
-        const results = await Promise.all(promises);
-        return results.map(({ data }) => ({
-            id: data.id,
-            name: data.name,
-            image: data.sprites.front_default,
-        }));
-    };
-
-    const shuffleArray = (array) => {
-        return array.sort(() => Math.random() - 0.5);
-    };
-
-    const handleCardClick = (pokemon) => {
-        if (flippedCards.length === 2 || flippedCards.some(card => card.uniqueId === pokemon.uniqueId) || matchedPairs.includes(pokemon.id) || !canFlip) return;
-
-        setFlippedCards((prev) => [...prev, pokemon]);
-
-        if (flippedCards.length === 1) {
-            if (flippedCards[0].id === pokemon.id) {
-                setMatchedPairs((prev) => [...prev, pokemon.id]);
-                setFlippedCards([]);
-            } else {
-                setCanFlip(false); // Empêcher de retourner d'autres cartes
-                setTimeout(() => {
-                    setFlippedCards([]);
-                    setCanFlip(true); // Réactiver le retournement des cartes
-                }, 1000);
-            }
-        }
-    };
 
     useEffect(() => {
         if (matchedPairs.length === 9) {
@@ -121,7 +121,7 @@ const Page3 = () => {
                                             key={pokemon.uniqueId}
                                             pokemon={pokemon}
                                             isFlipped={flippedCards.includes(pokemon) || matchedPairs.includes(pokemon.id)}
-                                            onClick={() => handleCardClick(pokemon)}
+                                            onClick={() => handleCardClick(pokemon, flippedCards, matchedPairs, setFlippedCards, setMatchedPairs, setCanFlip, canFlip)}
                                         />
                                     ))}
                                 </div>
@@ -141,7 +141,7 @@ const Page3 = () => {
                                 allowFullScreen
                             ></iframe>
                         </div>
-                        <button onClick={startGame} className="start-button">
+                        <button onClick={() => startGame(setGameStarted, setTime, setFlippedCards, setMatchedPairs, setCards, setTimerInterval)} className="start-button">
                         Start Game
                         </button>
                     </>
