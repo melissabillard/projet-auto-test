@@ -70,6 +70,7 @@ Webservice : [https://pokeapi.co/](https://pokeapi.co/)
 | Handle 404 Error                     | Vérifier que l'API gère correctement une erreur 404   | True                           | -                   | apiMocks.test.js           |
 | Retrieve Pokémon Data Structure      | Vérifier la structure des données du Pokémon retournées par l'API | True                   | -                   | apiMocks.test.js           |
 | Navigate from Home to Page2          | Vérifier la navigation de la page Home à la page Page2 | True                           | Home                | navigation.test.js         |
+| Navigate from Page1 to Home          | Vérifier la navigation de la page Page1 à la page Home| True                           | Page1               | navigation.test.js         |
 
 ## Intégration continue
 Nous avons mis en place un pipeline d'intégration continue (CI) avec GitHub Actions, qui surveille les commits sur la branche principale (main), exécute automatiquement les tests, et fusionne le code sur la branche de production (release) si les tests réussissent, garantissant ainsi une base de code stable et prête pour le déploiement.
