@@ -18,7 +18,7 @@ Webservice : [https://pokeapi.co/](https://pokeapi.co/)
 
 - [JEST](https://jestjs.io/fr/docs/getting-started)
 
-### Exécution
+### Exécuter les tests
 
 1) Test standard : ```npm test```
 
