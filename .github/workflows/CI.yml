@@ -19,6 +19,12 @@ jobs:
           CI: false  # Ignorer les erreurs ESLint dans le cadre de la construction
         run: npm run build
 
+      - name: Install Babel plugin proposal private property in object
+        run: npm install --save-dev @babel/plugin-proposal-private-property-in-object
+
+      - name: Debug Environment Variables
+        run: printenv | grep REACT_APP_API_URL
+
       - name: Test
         env:
           REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
