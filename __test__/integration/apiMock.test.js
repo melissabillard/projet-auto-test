@@ -3,7 +3,7 @@ const MockAdapter = require('axios-mock-adapter');
 
 const mock = new MockAdapter(axios);
 const apiUrl = process.env.REACT_APP_API_URL
-const apiMoveUrl = process.env.REACT_APP_API_MOVE_URL
+
 
 // API integration test with mock
 describe('PokeAPI Integration Tests', () => {
