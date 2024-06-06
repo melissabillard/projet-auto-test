@@ -21,3 +21,7 @@ jobs:
 
       - name: Test
         run: npm run test
+      
+      - name: Check test result
+        if: failure()
+        run: exit 1
