@@ -47,7 +47,9 @@ Webservice : [https://pokeapi.co/](https://pokeapi.co/)
 | Test ...           | ...                                                   | True                           | Home                |
 
 ## Intégration continue
-Nous avons mis en place un pipeline d'intégration continue (CI) avec GitHub Actions, qui surveille les commits sur la branche principale, exécute automatiquement les tests unitaires, et fusionne le code sur la branche de production (release) si les tests réussissent, garantissant ainsi une base de code stable et prête pour le déploiement.
+Nous avons mis en place un pipeline d'intégration continue (CI) avec GitHub Actions, qui surveille les commits sur la branche principale (main), exécute automatiquement les tests, et fusionne le code sur la branche de production (release) si les tests réussissent, garantissant ainsi une base de code stable et prête pour le déploiement.
+
+![](./src/assets/docs/CI.png)
 
 ## Déploiement continue
 
