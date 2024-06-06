@@ -4,6 +4,7 @@ on:
   push:
     branches : 
       - main # Déclenché à chaque nouveau commit sur le main
+
 jobs:
   buildAndTest:
     name: Build and Test
@@ -27,10 +28,14 @@ jobs:
 
       - name: Check test result
         if: success()  # Si les tests ont réussi
+        run: echo "Test validé"
+
+      - name: Merge main into release
+        if: success()  # Si les tests ont réussi
         run: |
-          echo "Test validé"
+          echo "Merging main into release"
           git checkout release && git pull origin main && git push origin release
-          echo "Mise à jour de la branche en production effectuée"
+          echo "Merge de la branche en production validé"
 
       - name: Check test failure
         if: failure()  # Si une étape précédente a échoué
