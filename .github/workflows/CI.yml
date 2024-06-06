@@ -23,5 +23,9 @@ jobs:
         run: npm run test
       
       - name: Check test result
-        if: failure()
+        if: success()  # Si les tests ont réussi
+        run: echo "Tests réussis !"
+
+      - name: Stop CI on error
+        if: failure()  # Si une étape précédente a échoué
         run: exit 1
