@@ -16,16 +16,16 @@ jobs:
 
       - name: Build
         env:
-          CI: false  # Ignorer les warnings ESLint dans le cadre de la construction
+          CI: false  # Ignorer les erreurs ESLint dans le cadre de la construction
         run: npm run build
 
       - name: Test
-        run: npm run test
-      
+        run: npm run test -- --watchAll=false  # Exécute les tests une fois et arrête le processus
+
       - name: Check test result
         if: success()  # Si les tests ont réussi
         run: echo "Tests réussis !"
 
-      - name: Stop CI on error
+      - name: Check test failure
         if: failure()  # Si une étape précédente a échoué
-        run: exit 1
+        run: echo "Tests échoués !"
