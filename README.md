@@ -20,7 +20,7 @@ Webservice : [https://pokeapi.co/](https://pokeapi.co/)
 
 ### Exécuter les tests
 
-**TOTAL** : 40 tests.
+**TOTAL** : 44 tests.
 
 1) Test standard : ```npm test```
 
