@@ -17,7 +17,8 @@ jobs:
           git config --global user.name "${{ secrets.GIT_USER_NAME }}"
       
       - uses: actions/checkout@v1
-        with:            
+        with:     
+          repository: "https://github.com/melissabillard/projet-auto-test"
           fetch-depth: 0
       
       - name: Install dependencies
