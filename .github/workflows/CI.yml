@@ -41,13 +41,13 @@ jobs:
       - name: Merge main into release
         if: success()  # Si les tests ont réussi
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.AUTH_TOKEN }}
         run: |
           echo "Merging main into release"
           git checkout release
           git pull origin release
           git merge main --no-ff --no-edit
-          git push https://x-access-token:${GITHUB_TOKEN}@github.com/melissabillard/projet-auto-test.git release
+          git push https://x-access-token:${AUTH_TOKEN}@github.com/melissabillard/projet-auto-test.git release
           echo "Merge de la branche en production validé"
 
       - name: Check test failure
