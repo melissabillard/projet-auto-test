@@ -10,7 +10,7 @@ jobs:
     name: Build and Test
     runs-on: ubuntu-latest
     env:
-      USERNAME: ${{ secrets.HUB_USERNAME }} 
+      USERNAME: ${{ secrets.HUB_USER }} 
       PASSWORD: ${{ secrets.AUTH_TOKEN }}
 
     steps:
