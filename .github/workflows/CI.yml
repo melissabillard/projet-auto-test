@@ -14,9 +14,6 @@ jobs:
       - name: Install dependencies
         run: npm i
      
-      - name: Install Babel plugin proposal private property in object
-        run: npm install --save-dev @babel/plugin-proposal-private-property-in-object
-
       - name: Build
         env:
           CI: false  # Ignorer les erreurs ESLint dans le cadre de la construction
