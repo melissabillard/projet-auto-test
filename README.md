@@ -36,9 +36,19 @@ Webservice : [https://pokeapi.co/](https://pokeapi.co/)
 
 ### Test graphique
 
-| Libellé            | Objectif du Test                                      | Valeur attendue                | Page                |
-|--------------------|-------------------------------------------------------|--------------------------------|---------------------|
-| Test ...           | ...                                                   | True                           | Home                |
+| Libellé                              | Objectif du Test                                      | Valeur attendue                | Page                | Fichier                    |
+|--------------------------------------|-------------------------------------------------------|--------------------------------|---------------------|----------------------------|
+| Renders composant Home correctement  | Vérifier le rendu correct du composant Home           | True                           | Home                | home.test.js               |
+| A les liens de navigation            | Vérifier la présence et les destinations des liens de navigation | True                | Home                | home.test.js               |
+| Vérifier les classes CSS            | Vérifier que les classes CSS sont appliquées correctement | True                        | Home                | home.test.js               |
+| Vérifier les styles inline corrects | Vérifier que les styles inline sont correctement appliqués | True                     | Home                | home.test.js               |
+| Simuler les interactions des utilisateurs | Vérifier le comportement des interactions utilisateur | True                    | Home                | home.test.js               |
+| Le texte "Bonjour" est présent       | Vérifier que le texte "Bonjour" est présent            | True                           | Home                | home.test.js               |
+| Le texte "Bonjour" est correct       | Vérifier que le texte "Bonjour" est correctement affiché | True                       | Home                | home.test.js               |
+| Le résultat possède 5 caractères     | Vérifier que le résultat a 5 caractères                | False                          | Home                | home.test.js               |
+| Renders the game start screen       | Vérifier le rendu de l'écran de démarrage du jeu      | True                           | Page3               | memorygraphic.test.js      |
+| Starts the game when the start button is clicked | Vérifier que le jeu démarre lorsque le bouton de démarrage est cliqué | True      | Page3               | memorygraphic.test.js      |
+| Flips a card when clicked           | Vérifier qu'une carte est retournée lorsqu'elle est cliquée | True                     | Page3               | memorygraphic.test.js      |
 
 ### Test d'intégration
 
